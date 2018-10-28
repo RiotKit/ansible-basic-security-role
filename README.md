@@ -11,6 +11,10 @@ Allows to improve security of:
 
 Does not include fail2ban configuration, as it has a good dedicated role.
 
+```bash
+ansible-galaxy install blackandred.server_basic_security
+```
+
 Configuration reference
 -----------------------
 
