@@ -1,0 +1,17 @@
+
+- name: Copy helper scripts to the bin directory
+  become: yes
+  copy:
+      src: "../files/usr/local/bin/{{ item }}"
+      dest: "/usr/local/bin/{{ item }}"
+      mode: a+x
+  with_items:
+      - scan-and-strip-logs.py
+      - strip-ipv4-address.py
+
+- name: Schedule logs stripping on every hour
+  become: yes
+  cron:
+      name: "logs-ipv4-strip"
+      minute: "30"
+      job: "python /usr/local/bin/scan-and-strip-logs.py"

@@ -1,0 +1,10 @@
+=======================================
+== This server is managed by Ansible ==
+=======================================
+
+Welcome to {{ ssh_host_title }}. {% if anonymize_logs %}
+- This server is anonymizing logs.{% endif %}{% if configure_firewall %}
+- UFW firewall is turned on, not all outgoing ports are allowed.{% endif %}{% if not ssh_gateway_ports %}
+- Forwarding SSH tunnels to the gateway is not allowed{% endif %}
+
+Have a nice day!

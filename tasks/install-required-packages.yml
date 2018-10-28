@@ -1,0 +1,6 @@
+- name: Install required packages
+  become: yes
+  apt:
+      update_cache: yes
+      name: ['openssh-server', 'ufw', 'python3']
+      state: present

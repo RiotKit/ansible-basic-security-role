@@ -1,0 +1,13 @@
+- include: install-required-packages.yml
+
+- include: configure-ssh.yml
+  when: configure_ssh == True
+
+- include: logs-anonymization.yml
+  when: anonymize_logs == True
+
+- include: configure-firewall.yml
+  when: configure_firewall == True
+
+- include: change-root-password.yml
+  when: change_root_password == True

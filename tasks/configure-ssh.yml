@@ -1,0 +1,16 @@
+- name: Apply sshd configuration
+  become: yes
+  template:
+      src: etc/ssh/sshd_config.j2
+      dest: /etc/ssh/sshd_config
+
+- name: Enable sshd on system startup
+  become: yes
+  systemd:
+      name: ssh
+      enabled: yes
+      state: restarted
+
+- name: Include port change
+  set_fact:
+    ansible_port: "{{ ssh_port }}"

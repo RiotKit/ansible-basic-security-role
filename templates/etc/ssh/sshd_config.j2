@@ -1,0 +1,53 @@
+# listening address
+Port {{ ssh_input_port }}
+ListenAddress {% if ssh_listen is defined %}{{ ssh_listen }}{% else %}0.0.0.0{% endif %}
+
+
+AllowTcpForwarding yes
+PermitTunnel {% if ssh_permit_tunnel %}yes{% else %}no{% endif %}
+
+GatewayPorts {% if ssh_gateway_ports %}yes{% else %}no{% endif %}
+
+AllowAgentForwarding yes
+Subsystem sftp /usr/lib/sftp-server
+AcceptEnv W_INFRA_AUTH
+
+# kick off after idle time
+ClientAliveInterval {{ ssh_idle_time }}
+ClientAliveCountMax 0
+
+# insecure features
+IgnoreRhosts yes
+HostbasedAuthentication no
+PermitEmptyPasswords no
+GSSAPIAuthentication no
+ChallengeResponseAuthentication no
+
+# do not use old protocol, just only the second version
+Protocol 2
+
+# banner
+Banner /etc/issue
+
+# hardening
+UsePrivilegeSeparation yes
+StrictModes yes
+VerifyReverseMapping yes
+X11Forwarding no
+MaxSessions 10
+PubkeyAuthentication yes
+RSAAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+
+# users
+
+{% if ssh_allow_only_specific_users %}
+AllowUsers {{ ssh_allow_only_specific_users }}{% endif %}
+
+UsePAM yes
+PrintLastLog yes
+
+# enabled temporarily
+PasswordAuthentication {% if ssh_password_auth %}yes{% else %}no{% endif %}
+
+PermitRootLogin {% if ssh_permit_root_login %}yes{% else %}no{% endif %}
