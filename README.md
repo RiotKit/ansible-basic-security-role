@@ -35,6 +35,7 @@ Configuration reference
 
     #
     # Logs IP addresses anonymization
+    # Allows to remove all IPv4 addresses from logs
     #
     anonymize_logs: true
 
