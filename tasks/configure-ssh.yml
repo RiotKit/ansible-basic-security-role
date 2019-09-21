@@ -13,4 +13,4 @@
 
 - name: Include port change
   set_fact:
-    ansible_port: "{{ ssh_port }}"
+    ansible_port: "{{ ssh_input_port }}"

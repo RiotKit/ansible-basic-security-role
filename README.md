@@ -24,7 +24,7 @@ Configuration reference
     #
     configure_ssh: true
     ssh_listen: "0.0.0.0"
-    ssh_port: "6420"
+    ssh_input_port: "6420"
     ssh_gateway_ports: no
     ssh_permit_tunnel: yes
     ssh_password_auth: yes
