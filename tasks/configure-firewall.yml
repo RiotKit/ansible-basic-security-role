@@ -4,13 +4,16 @@
     state: enabled
     direction: incoming
     policy: allow
+    interface: "{{ firewall_interface }}"
 
 - name: Whitelist selected incoming ports
   become: yes
   ufw:
     rule: allow
     port: "{{ item }}"
+    direction: in
     comment: "Managed by Ansible"
+    interface: "{{ firewall_interface }}"
   with_items: "{{ firewall_allowed_outgoing_ports }}"
 
 - name: Deny all incoming connections (except whitelisted ones)
@@ -19,6 +22,7 @@
     state: enabled
     direction: incoming
     policy: deny
+    interface: "{{ firewall_interface }}"
 
 - name: Allow all outgoing connections
   become: yes
@@ -26,3 +30,4 @@
     state: enabled
     direction: outgoing
     policy: allow
+    interface: "{{ firewall_interface }}"
