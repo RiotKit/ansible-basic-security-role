@@ -1,0 +1,15 @@
+- name: 'Allow incoming connections from RFC1918 networks (port: {{ port }})'
+  become: yes
+  ufw:
+      insert: 1
+      insert_relative_to: first-ipv4
+      proto: any
+      src: '{{ ip_address }}'
+      to_port: '{{ port }}'
+      rule: allow
+  loop_control:
+      loop_var: "ip_address"
+  loop:
+      - 10.0.0.0/8
+      - 172.16.0.0/12
+      - 192.168.0.0/16

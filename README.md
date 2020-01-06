@@ -43,6 +43,8 @@ Configuration reference
     # Firewall
     #
     configure_firewall: true
+    # Allow to access 192.168.0.0/16, 172.16.0.0/12 and 10.0.0.0/8 to all {{ firewall_allowed_outgoing_ports }} ports
+    firewall_whitelist_local_network_addresses: true 
     firewall_allowed_outgoing_ports:
         - 22
         - 6420

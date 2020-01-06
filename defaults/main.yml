@@ -23,6 +23,7 @@ anonymize_logs: true
 #
 configure_firewall: true
 firewall_interface: ""
+firewall_whitelist_local_network_addresses: false
 firewall_allowed_outgoing_ports:
     - 22
     - 6420

@@ -1,3 +1,11 @@
+
+# case: A docker container calls other exposed container via gateway interface, using public DNS hostname
+- when: firewall_whitelist_local_network_addresses|bool and firewall_interface
+  include: firewall/allow-incoming-local-connections.yml
+  loop_control:
+      loop_var: "port"
+  loop: "{{ firewall_allowed_outgoing_ports }}"
+
 - name: Allow all incoming connections (for deployment time)
   become: yes
   ufw:
