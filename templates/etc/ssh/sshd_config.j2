@@ -10,7 +10,6 @@ GatewayPorts {% if ssh_gateway_ports %}yes{% else %}no{% endif %}
 
 AllowAgentForwarding yes
 Subsystem sftp /usr/lib/sftp-server
-AcceptEnv W_INFRA_AUTH
 
 # kick off after idle time
 ClientAliveInterval {{ ssh_idle_time }}

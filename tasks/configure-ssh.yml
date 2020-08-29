@@ -1,8 +1,12 @@
 - name: Apply sshd configuration
   become: yes
   template:
-      src: etc/ssh/sshd_config.j2
-      dest: /etc/ssh/sshd_config
+      src: "{{ item }}.j2"
+      dest: "/{{ item }}"
+  with_items:
+      - etc/ssh/sshd_config
+      - etc/issue
+      - etc/motd
 
 - name: Enable sshd on system startup
   become: yes

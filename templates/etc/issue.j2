@@ -1,10 +1,9 @@
-=======================================
-== This server is managed by Ansible ==
-=======================================
+=====================================================================
+WARNING! You are attempting to reach a secured zone.
+         Intrusion Prevention System is running on this machine.
+         This server is MONITORED.
+=====================================================================
 
-Welcome to {{ ssh_host_title }}. {% if anonymize_logs %}
-- This server is anonymizing logs.{% endif %}{% if configure_firewall %}
-- UFW firewall is turned on, not all outgoing ports are allowed.{% endif %}{% if not ssh_gateway_ports %}
-- Forwarding SSH tunnels to the gateway is not allowed{% endif %}
+NOTICE: Multiple failed login attemps will result in a temporary ban.
+---------------------------------------------------------------------
 
-Have a nice day!
