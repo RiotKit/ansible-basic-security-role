@@ -13,5 +13,9 @@
   become: yes
   cron:
       name: "logs-ipv4-strip"
-      minute: "30"
+      minute: "{{ anonymize_logs_schedule['minute'] | default('00') }}"
+      hour: "{{ anonymize_logs_schedule['hour'] | default('*/6') }}"
+      day: "{{ anonymize_logs_schedule['day'] | default('*') }}"
+      weekday: "{{ anonymize_logs_schedule['weekday'] | default('*') }}"
+      month: "{{ anonymize_logs_schedule['month'] | default('*') }}"
       job: "python /usr/local/bin/scan-and-strip-logs.py"

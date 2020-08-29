@@ -9,7 +9,7 @@ ssh_gateway_ports: no
 ssh_permit_tunnel: yes
 ssh_password_auth: yes
 ssh_permit_root_login: no
-ssh_host_title: "International Workers Association server"
+ssh_host_title: "iwa-ait.org"
 ssh_allow_only_specific_users: ""   # type user names here, separated by [space] character
 ssh_idle_time: "1800"
 
@@ -17,6 +17,23 @@ ssh_idle_time: "1800"
 # Logs IP addresses anonymization
 #
 anonymize_logs: true
+anonymize_logs_schedule:
+    minute: "00"
+    hour: "*/6"
+    day: "*"
+    weekday: "*"
+    month: "*"
+
+#
+# Clear bash history
+#
+clear_shell_history: false
+clear_shell_history_schedule:
+    minute: "30"
+    hour: "*"
+    day: "*"
+    weekday: "*"
+    month: "*"
 
 #
 # Firewall

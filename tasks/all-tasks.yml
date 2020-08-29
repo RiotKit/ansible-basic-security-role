@@ -6,6 +6,9 @@
 - include: logs-anonymization.yml
   when: anonymize_logs == True
 
+- include: shell-history-cleaning.yml
+  when: clear_shell_history == True
+
 - include: configure-firewall.yml
   when: configure_firewall == True
 

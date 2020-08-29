@@ -3,11 +3,12 @@ Basic Security
 
 Just another security role for Ansible.
 
-Allows to improve security of:
-- SSH
-- logs (IPv4 anonymization)
-- firewall (blocking incoming connections on unknown ports)
-- change root password
+**Features:**
+- SSH security improvements
+- IPv4 addresses anonymization in logs (scheduled every X hours, so the fail2ban can have time to block attackers on time)
+- Firewall configuration (blocking incoming connections on unknown ports)
+- Change root password
+- Scheduled bash, zsh, python (and others) history cleaning, so your passwords will not stay in a history
 
 Does not include fail2ban configuration, as it has a good dedicated role.
 
@@ -35,9 +36,25 @@ Configuration reference
 
     #
     # Logs IP addresses anonymization
-    # Allows to remove all IPv4 addresses from logs
     #
     anonymize_logs: true
+    anonymize_logs_schedule:
+        minute: 30
+        hour: "*"
+        day: "*"
+        weekday: "*"
+        month: "*"
+    
+    #
+    # Clear bash history
+    #
+    clear_shell_history: false
+    clear_shell_history_schedule:
+        minute: 30
+        hour: "*"
+        day: "*"
+        weekday: "*"
+        month: "*"
 
     #
     # Firewall

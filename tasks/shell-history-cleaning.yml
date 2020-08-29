@@ -1,0 +1,18 @@
+
+- name: Copy helper scripts to the bin directory
+  become: yes
+  copy:
+      src: "../files/usr/local/bin/clear-shell-history.py"
+      dest: "/usr/local/bin/clear-shell-history.py"
+      mode: a+x
+
+- name: Schedule shell history cleaning
+  become: yes
+  cron:
+      name: "shell-history-cleaning"
+      minute: "{{ clear_shell_history_schedule['minute'] | default('00') }}"
+      hour: "{{ clear_shell_history_schedule['hour'] | default('*') }}"
+      day: "{{ clear_shell_history_schedule['day'] | default('*') }}"
+      weekday: "{{ clear_shell_history_schedule['weekday'] | default('*') }}"
+      month: "{{ clear_shell_history_schedule['month'] | default('*') }}"
+      job: "python3 /usr/local/bin/clear-shell-history.py"
